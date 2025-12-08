@@ -11,8 +11,6 @@ dotenv.config();
 
 const app = express();
 
-app.use(serveStatic(path.join(__dirname, "public")));
-
 const client = init(process.env.LAUNCHDARKLY_SDK_KEY, {
   plugins: [
     new Observability({
@@ -23,8 +21,23 @@ const client = init(process.env.LAUNCHDARKLY_SDK_KEY, {
 
 app.get("/", (req, res) => {
   const { span } = LDObserve.startWithHeaders("homepage.render", req.headers);
-
-  res.send("Hello World!");
+  // INSERT_YOUR_CODE
+  const user = { key: "anonymous-user" };
+  client.waitForInitialization(5).then(() => {
+    client
+      .variation("show-enterprise-site", user, false)
+      .then((showEnterprise) => {
+        if (showEnterprise) {
+          res.sendFile(path.join(__dirname, "public", "enterprise.html"));
+        } else {
+          res.sendFile(path.join(__dirname, "public", "student.html"));
+        }
+      })
+      .catch((err) => {
+        console.error("Error evaluating LaunchDarkly flag:", err);
+        res.status(500).send("Internal server error");
+      });
+  });
   span.end();
 });
 
