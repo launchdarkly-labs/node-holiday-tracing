@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const serveStatic = require("serve-static");
 const { init } = require("@launchdarkly/node-server-sdk");
 const {
   Observability,
@@ -19,18 +18,20 @@ const client = init(process.env.LAUNCHDARKLY_SDK_KEY, {
   ],
 });
 
+const TIMEOUT_IN_SECONDS = 5;
+
 app.get("/", (req, res) => {
   const { span } = LDObserve.startWithHeaders("homepage.render", req.headers);
-  // INSERT_YOUR_CODE
+
   const user = { key: "anonymous-user" };
-  client.waitForInitialization(5).then(() => {
+  client.waitForInitialization(TIMEOUT_IN_SECONDS).then(() => {
     client
       .variation("show-enterprise-site", user, false)
       .then((showEnterprise) => {
         if (showEnterprise) {
           res.sendFile(path.join(__dirname, "public", "enterprise.html"));
         } else {
-          res.sendFile(path.join(__dirname, "public", "student.html"));
+          res.sendFile(path.join(__dirname, "public", "holiday.html"));
         }
       })
       .catch((err) => {

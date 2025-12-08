@@ -1,0 +1,74 @@
+<meta charset="UTF-8">
+    <title>Happy Holidays</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Happy Holidays</h1>
+    <h2>Everyone needs something to celebrate</h2>
+    <p>All traditions are welcome and valid.</p>
+</body>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1e2b4f 0%, #39517b 100%);
+        color: #fffbe8;
+        font-family: 'Courier New', Courier, monospace;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow-x: hidden;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 0.2em;
+        color: #ffe066;
+        text-shadow: 2px 2px 8px #d72660, 0 0 10px #003366;
+    }
+    h2 {
+        font-size: 2em;
+        color: #5ee2d4;
+        margin-bottom: 0.6em;
+        text-shadow: 1px 1px 8px #21004f;
+    }
+    p {
+        font-size: 1.5em;
+        color: #a0ffe6;
+        text-shadow: 1px 1px 8px #ff0072;
+    }
+    .snowflake {
+        position: absolute;
+        top: -40px;
+        color: #fff;
+        font-size: 2em;
+        opacity: 0.8;
+        animation: fall linear infinite;
+        pointer-events: none;
+    }
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0.6;
+        }
+    }
+</style>
+<script>
+    // Add animated snowflakes for a festive touch!
+    const snowflakeEmojis = ['❄️','❅','❆','*'];
+    function createSnowflake() {
+        const flake = document.createElement('span');
+        flake.className = 'snowflake';
+        flake.textContent = snowflakeEmojis[Math.floor(Math.random() * snowflakeEmojis.length)];
+        flake.style.left = Math.random() * 100 + 'vw';
+        flake.style.fontSize = (Math.random() * 1.5 + 1) + 'em';
+        flake.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        document.body.appendChild(flake);
+        setTimeout(() => flake.remove(), 6000);
+    }
+    setInterval(createSnowflake, 400);
+    for (let i = 0; i < 20; i++) setTimeout(createSnowflake, i * 200); // initial snow
+</script>
