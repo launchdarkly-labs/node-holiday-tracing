@@ -26,12 +26,12 @@ app.get("/", (req, res) => {
   const user = { key: "anonymous-user" };
   client.waitForInitialization(TIMEOUT_IN_SECONDS).then(() => {
     client
-      .variation("show-enterprise-site", user, false)
-      .then((showEnterprise) => {
-        if (showEnterprise) {
-          res.sendFile(path.join(__dirname, "public", "enterprise.html"));
-        } else {
+      .variation("show-holiday-styling", user, false)
+      .then((showHolidayStyling) => {
+        if (showHolidayStyling) {
           res.sendFile(path.join(__dirname, "public", "holiday.html"));
+        } else {
+          res.sendFile(path.join(__dirname, "public", "enterprise.html"));
         }
       })
       .catch((err) => {
