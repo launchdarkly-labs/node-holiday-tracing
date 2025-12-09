@@ -1,6 +1,6 @@
-## Creating customized user experiences with Express JS and LaunchDarkly segment targeting
+## ❄️ Tracing the impact of holiday styling in your Node.js app, LaunchDarkly style
 
-Example [Express](https://expressjs.com/) app that can be integrated with [LaunchDarkly's Node.js server side SDK](https://docs.launchdarkly.com/sdk/server-side/node-js).
+Example [Express](https://expressjs.com/) app that can be integrated with [LaunchDarkly's Node.js Observability SDK](https://launchdarkly.com/docs/sdk/observability/node-js)).
 
 ### How to get started:
 
@@ -20,8 +20,10 @@ Run the server:
 
 `npm start`
 
-If you load http://127.0.0.1:3000/ in the browser, you should see a "hello world" page.
+If you load http://127.0.0.1:3000/ in the browser, you should see a starter page. 
+
+Follow along with the rest of the tutorial: https://docs.launchdarkly.com/tutorials/observability-holiday-tracing
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[[Apache 2.0](https://choosealicense.com/licenses/mit/](https://www.apache.org/licenses/LICENSE-2.0 )
