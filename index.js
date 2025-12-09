@@ -23,11 +23,20 @@ const TIMEOUT_IN_SECONDS = 5;
 app.get("/", (req, res) => {
   const { span } = LDObserve.startWithHeaders("homepage.render", req.headers);
 
-  const user = { key: "anonymous-user" };
-  client.waitForInitialization(TIMEOUT_IN_SECONDS).then(() => {
+  const context = {
+    kind: "user",
+    name: "tilde",
+    key: "context-key-123abc",
+  };
+
+  client.waitForInitialization({ timeout: TIMEOUT_IN_SECONDS }).then(() => {
     client
-      .variation("show-holiday-styling", user, false)
+      .variation("show-holiday-styling", context, false)
+
       .then((showHolidayStyling) => {
+        LDObserve.setAttributes({
+          "show-holiday-styling": showHolidayStyling,
+        });
         if (showHolidayStyling) {
           res.sendFile(path.join(__dirname, "public", "holiday.html"));
         } else {
