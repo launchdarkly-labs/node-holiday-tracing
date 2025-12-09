@@ -26,4 +26,4 @@ Follow along with the rest of the tutorial: https://docs.launchdarkly.com/tutori
 
 ## License
 
-[[Apache 2.0](https://choosealicense.com/licenses/mit/](https://www.apache.org/licenses/LICENSE-2.0 )
+[Apache 2.0](https://choosealicense.com/licenses/mit/](https://www.apache.org/licenses/LICENSE-2.0 )
