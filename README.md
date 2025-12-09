@@ -6,7 +6,7 @@ Example [Express](https://expressjs.com/) app that can be integrated with [Launc
 
 clone this repo on to your local machine:
 
-`git clone https://github.com/launchdarkly-labs/node-holiday-tracing
+`git clone https://github.com/launchdarkly-labs/node-holiday-tracing`
 
 Log in to your [LaunchDarkly](https://launchdarkly.com/) account (or [sign up for a free one here](https://launchdarkly.com/).) Copy your SDK key. Paste the key into the `.env.example` file. Rename `.env.example` file to .env
 
